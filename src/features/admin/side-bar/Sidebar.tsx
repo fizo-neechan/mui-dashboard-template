@@ -6,7 +6,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Drawer, DrawerBox, DrawerHeader } from "./Sidebar.style";
 
-export default function MiniDrawer() {
+export default function SideBar() {
   const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
