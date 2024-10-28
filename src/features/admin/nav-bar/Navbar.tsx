@@ -1,6 +1,6 @@
 "use client";
 
-import { alpha, Box, Divider, Icon, IconButton, Menu, MenuItem, MenuProps, styled, Typography } from "@mui/material";
+import { Box, Divider, IconButton, MenuItem, Typography } from "@mui/material";
 import { usePathname } from "next/navigation";
 
 import PersonIcon from '@mui/icons-material/Person';
@@ -12,7 +12,6 @@ import { EditNotifications } from "@mui/icons-material";
 import ArchiveIcon from '@mui/icons-material/Archive';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { StyledMenu } from "./Navbar.style";
 
 const Navbar = () => {

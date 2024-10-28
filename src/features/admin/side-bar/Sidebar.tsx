@@ -1,10 +1,9 @@
 "use client";
-import { Box, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Typography } from "@mui/material";
+import { Box, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { Drawer, DrawerBox, DrawerHeader } from "./Sidebar.style";
 import { usePathname, useRouter } from "next/navigation";
 

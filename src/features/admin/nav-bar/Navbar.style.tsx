@@ -1,5 +1,5 @@
 "use client";
-import { alpha, Box, Divider, Icon, IconButton, Menu, MenuItem, MenuProps, styled, Typography } from "@mui/material";
+import { alpha, Menu, MenuProps, styled } from "@mui/material";
 
 export const StyledMenu = styled((props: MenuProps) => (
   <Menu
