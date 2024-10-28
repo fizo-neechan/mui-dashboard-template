@@ -1,7 +1,8 @@
 "use client";
-import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import React, { useState } from "react";
-
+import { Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { useState } from "react";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Drawer, DrawerBox, DrawerHeader } from "./Sidebar.style";
@@ -20,7 +21,29 @@ export default function SideBar() {
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerBox>
-        <DrawerHeader></DrawerHeader>
+        <DrawerHeader>
+          <ListItemText
+            primaryTypographyProps={{
+              fontWeight: "600 !important",
+              fontSize: "1.2rem",
+              color: "text.main",
+              marginTop: '0.5rem'
+            }}
+            sx={[
+              open
+                ? {
+                  opacity: 1,
+                }
+                : {
+                  opacity: 0,
+                },
+            ]}
+            primary="Dashboard"
+          />
+          <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+            {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </DrawerHeader>
         <Divider />
         <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
@@ -44,8 +67,8 @@ export const StyledListItem: React.FC<StyledListItemProps> = ({ text, index, ope
       disablePadding
       sx={{
         display: "block",
-        backgroundColor: index === 0 ? "background.white" : "",
-        borderRadius: "10px",
+        backgroundColor: open && index === 0 ? "background.white" : "",
+        borderRadius: "8px",
         marginBottom: "0.4rem",
       }}
     >
