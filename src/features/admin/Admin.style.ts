@@ -7,7 +7,7 @@ export const AdminSectionWrapper = styled(Box)(({ theme }) => ({
   height: '100%',
   borderRadius: 6,
   marginTop: theme.spacing(1),
-  backgroundColor: theme.palette.background.white,
+  backgroundColor: 'white',
 }));
 
 export const AdminSectionHeading = styled(Typography)(() => ({
