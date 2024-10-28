@@ -10,9 +10,10 @@ export default function AdminDashboardLayout({
   return (
     <Box sx={{ display: "flex" }}>
       <SideBar />
-      <Box sx={{ flexGrow: 1, padding: '2.4rem 1.8rem' }}>
+      <Box sx={{ flexGrow: 1, padding: "2.4rem 1.8rem", minHeight: "100vh" }}>
         <Navbar />
-        {children}</Box>
+        {children}
+      </Box>
     </Box>
   );
 }

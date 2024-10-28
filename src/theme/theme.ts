@@ -30,6 +30,7 @@ const palette = {
   text: {
     primary: "rgba(0, 0, 0, 1)",
     secondary: "rgba(120, 120, 120, 1)",
+    grey: "rgba(180, 180, 180, 1)",
     light: "rgba(255, 255, 255, 1)",
   },
 };
