@@ -1,3 +1,7 @@
+html {
+  font-size: 62.5%; /* 62.5% of 16px is 10px */
+}
+
 :root {
   --background: #f8f9fa;
   --foreground: #0e0e0e;
