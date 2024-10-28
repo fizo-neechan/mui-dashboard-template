@@ -1,11 +1,18 @@
 "use client";
 
-import { alpha, Box, Icon, IconButton, Menu, MenuProps, styled, Typography } from "@mui/material";
+import { alpha, Box, Divider, Icon, IconButton, Menu, MenuItem, MenuProps, styled, Typography } from "@mui/material";
 import { usePathname } from "next/navigation";
 
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useId, useState } from "react";
+import { EditNotifications } from "@mui/icons-material";
+
+import ArchiveIcon from '@mui/icons-material/Archive';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const Navbar = () => {
   const pathname = usePathname().split('/');
@@ -33,9 +40,9 @@ const Navbar = () => {
       display: "flex",
       color: 'text.primary',
     }}>
-      <IconButton >
+      <NavbarMenuIcon >
         <PersonIcon />
-      </IconButton>
+      </NavbarMenuIcon>
       <IconButton >
         <SettingsIcon />
       </IconButton>
@@ -46,8 +53,60 @@ const Navbar = () => {
   </Box>;
 };
 
-const BreadCrumbs = ({ pathname }: { pathname: string[] }) => {
+const NavbarMenuIcon = ({ children }: { children: React.ReactNode }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
+  const id = useId();
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget as HTMLElement);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <IconButton
+        onClick={handleClick}
+      >
+        {children}
+      </IconButton>
+
+      <StyledMenu
+        id="demo-customized-menu"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} disableRipple>
+          <EditNotifications />
+          Edit
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <FileCopyIcon />
+          Duplicate
+        </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem onClick={handleClose} disableRipple>
+          <ArchiveIcon />
+          Archive
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <MoreHorizIcon />
+          More
+        </MenuItem>
+      </StyledMenu>
+    </>
+
+  )
+}
+const BreadCrumbs = ({ pathname }: { pathname: string[] }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       {pathname.map((path, index) => {
