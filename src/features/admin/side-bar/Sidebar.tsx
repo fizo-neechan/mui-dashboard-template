@@ -1,11 +1,12 @@
-"use client";
-import { Box, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Typography } from "@mui/material";
-import { useState } from "react";
+'use client';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import { Drawer, DrawerBox, DrawerHeader } from "./Sidebar.style";
-import { usePathname, useRouter } from "next/navigation";
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { Box, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Typography } from '@mui/material';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import { Drawer, DrawerBox, DrawerHeader } from './Sidebar.style';
 
 interface MenuItem {
   text: string;
@@ -62,7 +63,7 @@ const MENU_ITEMS: MenuItems[] = [
       },
     ]
   },
-]
+];
 
 export default function SideBar() {
   const pathname = usePathname();
@@ -82,9 +83,9 @@ export default function SideBar() {
         <DrawerHeader>
           <ListItemText
             primaryTypographyProps={{
-              fontWeight: "600",
-              fontSize: "1.2rem",
-              color: "text.main",
+              fontWeight: '600',
+              fontSize: '1.2rem',
+              color: 'text.main',
               marginTop: '0.5rem'
             }}
             sx={[
@@ -105,9 +106,9 @@ export default function SideBar() {
         <List>
           {MENU_ITEMS.map((section, idx) => (
             <>
-              <MenuSectionDivider name={section.section} open={open} />
-              {section.items.map((item, jdx) => (
-                <StyledListItem text={item.text} icon={item.icon} selected={pathname === item.path} path={item.path} open={open} />
+              <MenuSectionDivider key={idx} name={section.section} open={open} />
+              {section.items.map((item) => (
+                <StyledListItem key={item.text} text={item.text} icon={item.icon} selected={pathname === item.path} path={item.path} open={open} />
               ))}
             </>
           ))}
@@ -122,7 +123,7 @@ const MenuSectionDivider = ({ name, open }: { name: string, open: boolean }) => 
     display: 'flex',
     gap: '0.8rem',
     alignItems: 'center',
-    margin: "0.8rem 0",
+    margin: '0.8rem 0',
     opacity: open ? 1 : 0,
     transition: 'opacity 0.1s ease-in-out',
   }}>
@@ -147,7 +148,7 @@ const MenuSectionDivider = ({ name, open }: { name: string, open: boolean }) => 
       height: '0.1rem',
     }}></Box>
   </Box>;
-}
+};
 
 interface StyledListItemProps extends MenuItem {
   open: boolean;
@@ -156,18 +157,19 @@ interface StyledListItemProps extends MenuItem {
 
 export const StyledListItem: React.FC<StyledListItemProps> = ({ text, icon, selected, open, path }) => {
   const router = useRouter();
+
   return (
     <ListItem
       disablePadding
       sx={{
-        display: "block",
-        backgroundColor: open && selected ? "background.white" : "",
-        borderRadius: "8px",
-        marginBottom: "0.4rem",
+        display: 'block',
+        backgroundColor: open && selected ? 'background.white' : '',
+        borderRadius: '8px',
+        marginBottom: '0.4rem',
       }}
     >
       <ListItemButton
-        onClick={() => { router.push(path) }}
+        onClick={() => { router.push(path); }}
         sx={[
           {
             minHeight: 48,
@@ -175,10 +177,10 @@ export const StyledListItem: React.FC<StyledListItemProps> = ({ text, icon, sele
           },
           open
             ? {
-              justifyContent: "initial",
+              justifyContent: 'initial',
             }
             : {
-              justifyContent: "center",
+              justifyContent: 'center',
             },
         ]}
       >
@@ -186,29 +188,29 @@ export const StyledListItem: React.FC<StyledListItemProps> = ({ text, icon, sele
           sx={[
             {
               minWidth: 0,
-              color: !selected ? "accent.main" : "text.light",
-              borderRadius: "8px",
-              padding: "0.5rem",
-              justifyContent: "center",
-              backgroundColor: !selected ? "background.white" : "accent.main",
+              color: !selected ? 'accent.main' : 'text.light',
+              borderRadius: '8px',
+              padding: '0.5rem',
+              justifyContent: 'center',
+              backgroundColor: !selected ? 'background.white' : 'accent.main',
             },
             open
               ? {
                 mr: 3,
               }
               : {
-                mr: "auto",
+                mr: 'auto',
               },
           ]}
         >
-        {icon}
+          {icon}
         </ListItemIcon>
         <ListItemText
           primary={text}
           primaryTypographyProps={{
-            fontWeight: "600 !important",
-            fontSize: "1.2rem",
-            color: !selected ? "text.secondary" : "text.main",
+            fontWeight: '600 !important',
+            fontSize: '1.2rem',
+            color: !selected ? 'text.secondary' : 'text.main',
           }}
           sx={[
             open

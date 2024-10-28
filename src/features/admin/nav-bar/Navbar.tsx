@@ -1,35 +1,34 @@
-"use client";
+'use client';
 
-import { Box, Divider, IconButton, MenuItem, Typography } from "@mui/material";
-import { usePathname } from "next/navigation";
-
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useId, useState } from "react";
-import { EditNotifications } from "@mui/icons-material";
-
+import { EditNotifications } from '@mui/icons-material';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { StyledMenu } from "./Navbar.style";
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { Box, Divider, IconButton, MenuItem, Typography } from '@mui/material';
+import { usePathname } from 'next/navigation';
+import { useId, useState } from 'react';
+
+import { StyledMenu } from './Navbar.style';
 
 const Navbar = () => {
   const pathname = usePathname().split('/');
 
   return <Box sx={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "1rem",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '1rem',
   }}>
     <Box>
       <BreadCrumbs pathname={pathname} />
       <Typography
         sx={{
-          color: "text.primary",
-          fontWeight: "bold",
-          fontSize: "1.4rem",
+          color: 'text.primary',
+          fontWeight: 'bold',
+          fontSize: '1.4rem',
         }}
       >
         {pathname[pathname.length - 1].charAt(0).toUpperCase() + pathname[pathname.length - 1].slice(1)}
@@ -37,7 +36,7 @@ const Navbar = () => {
     </Box>
 
     <Box sx={{
-      display: "flex",
+      display: 'flex',
       color: 'text.primary',
     }}>
       <NavbarMenuIcon >
@@ -104,20 +103,21 @@ const NavbarMenuIcon = ({ children }: { children: React.ReactNode }) => {
       </StyledMenu>
     </>
 
-  )
-}
+  );
+};
 const BreadCrumbs = ({ pathname }: { pathname: string[] }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
       {pathname.map((path, index) => {
         if (index === 0) return null;
+
         return (
           <Typography
             sx={{
-              color: index === pathname.length - 1 ? "text.primary" : "text.secondary",
-              fontWeight: "normal",
-              fontSize: "1.2rem",
-              lineHeight: "150%",
+              color: index === pathname.length - 1 ? 'text.primary' : 'text.secondary',
+              fontWeight: 'normal',
+              fontSize: '1.2rem',
+              lineHeight: '150%',
             }}
             key={index}
           >
@@ -126,11 +126,10 @@ const BreadCrumbs = ({ pathname }: { pathname: string[] }) => {
             </>
             }
           </Typography>
-        )
+        );
       })}
     </Box>
   );
 };
 
 export default Navbar;
-

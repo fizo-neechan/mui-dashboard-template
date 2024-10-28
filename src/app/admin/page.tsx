@@ -2,7 +2,7 @@
 const Page = () => {
   return (
     <>Page</>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

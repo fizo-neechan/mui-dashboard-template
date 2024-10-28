@@ -1,6 +1,7 @@
-import Navbar from "@/features/admin/nav-bar/Navbar";
-import SideBar from "@/features/admin/side-bar/Sidebar";
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
+
+import Navbar from '@/features/admin/nav-bar/Navbar';
+import SideBar from '@/features/admin/side-bar/Sidebar';
 
 export default function AdminDashboardLayout({
   children,
@@ -8,9 +9,9 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <SideBar />
-      <Box sx={{ flexGrow: 1, padding: "2.4rem 1.8rem", minHeight: "100vh" }}>
+      <Box sx={{ flexGrow: 1, padding: '2.4rem 1.8rem', minHeight: '100vh' }}>
         <Navbar />
         {children}
       </Box>
