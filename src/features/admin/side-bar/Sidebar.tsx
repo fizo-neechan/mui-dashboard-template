@@ -19,27 +19,35 @@ interface MenuItems {
   items: MenuItem[];
 }
 
+import GridViewIcon from '@mui/icons-material/GridView';
+import AllInboxIcon from '@mui/icons-material/AllInbox';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PersonIcon from '@mui/icons-material/Person';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+
 const MENU_ITEMS: MenuItems[] = [
   {
     section: 'Main', items: [
       {
         text: 'Dashboard',
-        icon: <InboxIcon />,
+        icon: <GridViewIcon />,
         path: '/admin',
       },
       {
         text: 'Inbox',
-        icon: <InboxIcon />,
+        icon: <AllInboxIcon />,
         path: '/admin/inbox',
       },
       {
         text: 'Starred',
-        icon: <InboxIcon />,
+        icon: <StarRateIcon />,
         path: '/admin/starred',
       },
       {
         text: 'Drafts',
-        icon: <InboxIcon />,
+        icon: <DraftsIcon />,
         path: '/admin/drafts',
       },
     ]
@@ -48,17 +56,17 @@ const MENU_ITEMS: MenuItems[] = [
     section: 'Account', items: [
       {
         text: 'Your Account',
-        icon: <InboxIcon />,
+        icon: <PersonIcon />,
         path: '/admin/account',
       },
       {
         text: 'Settings',
-        icon: <InboxIcon />,
+        icon: <ManageAccountsIcon />,
         path: '/admin/account/settings',
       },
       {
         text: 'Users',
-        icon: <InboxIcon />,
+        icon: <SupervisorAccountIcon />,
         path: '/admin/account/users',
       },
     ]
