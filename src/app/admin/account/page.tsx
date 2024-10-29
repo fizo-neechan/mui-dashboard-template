@@ -1,5 +1,4 @@
 import { AdminSectionHeading, AdminSectionsLayout, AdminSectionWrapper } from '@/features/admin/Admin.style';
-import React from 'react';
 
 const Page = () => {
   return (
