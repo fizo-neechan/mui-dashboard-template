@@ -6,7 +6,7 @@ import { Box, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItem
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { Drawer, DrawerBox, DrawerHeader } from './Sidebar.style';
+import { Drawer, DrawerBox, DrawerHeader, DrawerHeaderDivider } from './Sidebar.style';
 
 interface MenuItem {
   text: string;
@@ -49,7 +49,7 @@ const MENU_ITEMS: MenuItems[] = [
       {
         text: 'Your Account',
         icon: <InboxIcon />,
-        path: '/admin/account/manage',
+        path: '/admin/account',
       },
       {
         text: 'Settings',
@@ -84,7 +84,7 @@ export default function SideBar() {
           <ListItemText
             primaryTypographyProps={{
               fontWeight: '600',
-              fontSize: '1.2rem',
+              fontSize: '1.8rem',
               color: 'text.main',
               marginTop: '0.5rem'
             }}
@@ -97,16 +97,19 @@ export default function SideBar() {
                   opacity: 0,
                 },
             ]}
-            primary="Dashboard"
+            primary="Ace My Exams"
           />
           <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
             {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
+        <DrawerHeaderDivider />
         <List>
           {MENU_ITEMS.map((section, idx) => (
             <>
+              {section.section !== 'Main' && 
               <MenuSectionDivider key={idx} name={section.section} open={open} />
+              }
               {section.items.map((item) => (
                 <StyledListItem key={item.text} text={item.text} icon={item.icon} selected={pathname === item.path} path={item.path} open={open} />
               ))}
