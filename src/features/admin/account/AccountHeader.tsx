@@ -1,5 +1,6 @@
-import Navbar from "../nav-bar/Navbar";
-import Image from "next/image";
+import { Box } from '@mui/material';
+import Image from 'next/image';
+
 import {
   AccountDetailsBox,
   AccountHeaderBox,
@@ -8,14 +9,14 @@ import {
   AccountWrapper,
   BgWrapper,
   NavbarWrapper,
-} from "./AccountHeader.style";
-import { Box } from "@mui/material";
+} from './AccountHeader.style';
+import Navbar from '../nav-bar/Navbar';
 
 const AccountHeader = () => {
   return (
     <AccountHeaderBox>
       <BgWrapper>
-        <Image src={"/account-header-bg.svg"} alt="Account Header" layout="fill" objectFit="cover" />
+        <Image src={'/account-header-bg.svg'} alt="Account Header" layout="fill" objectFit="cover" />
       </BgWrapper>
 
       <NavbarWrapper>
@@ -24,7 +25,7 @@ const AccountHeader = () => {
 
       <AccountWrapper>
         <AccountDetailsBox>
-          <Image src={"/dummy-account.png"} alt="Profile Picture" width={80} height={80} style={{ borderRadius: "6px" }} />
+          <Image src={'/dummy-account.png'} alt="Profile Picture" width={80} height={80} style={{ borderRadius: '6px' }} />
           <Box>
             <AccountName>John Doe</AccountName>
             <AccountTag>@johndoe</AccountTag>
