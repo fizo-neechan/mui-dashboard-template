@@ -1,5 +1,4 @@
-import Navbar from "@/features/admin/nav-bar/Navbar";
-import React from "react";
+import AccountHeader from "@/features/admin/account/AccountHeader";
 
 const AdminAccountLayout = ({
   children,
@@ -8,7 +7,7 @@ const AdminAccountLayout = ({
 }>) => {
   return (
     <>
-      <Navbar />
+      <AccountHeader />
       {children}
     </>
   );
