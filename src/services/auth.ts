@@ -16,7 +16,7 @@ export async function registerUser(userData: RegisterInput) {
       name: userData.name,
       email: userData.email,
       image: '',
-      role: 'USER',
+      role: 'ADMIN',
       password: await getHashedPassword(userData.password),
       emailVerified: true,
       createdAt: new Date(),
