@@ -21,6 +21,10 @@ export async function registerUser(userData: RegisterInput) {
       emailVerified: true,
       createdAt: new Date(),
       updatedAt: new Date(),
+      isBlocked: false,
+      isDeleted: false,
+      blockedAt: null,
+      deletedAt: null,
     });
   }
 
