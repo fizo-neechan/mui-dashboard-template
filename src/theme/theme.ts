@@ -21,11 +21,11 @@ const palette = {
     default: 'rgba(255, 251, 251, 1)',
     gray: 'rgba(248, 249, 250, 1)',
   },
-  accent: {
-    main: 'rgba(218, 150, 148, 1)',
-  },
   primary: {
     main: 'rgba(0, 0, 0, 1)',
+  },
+  secondary: {
+    main: 'rgba(218, 150, 148, 1)',
   },
   text: {
     primary: 'rgba(0, 0, 0, 1)',
