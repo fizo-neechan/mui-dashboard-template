@@ -1,15 +1,17 @@
 // lib/auth.ts
-import { UserRole } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { User, UserRole } from '@prisma/client';
+import { NextRequest } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 
+import AuthError, { AuthErrorType } from '@/types/auth-error';
 import prisma from '@/utils/prisma';
 
 import authOptions from './auth-options';
 import { roleHierarchy } from './validate-role.types';
 
-async function getCurrentUser(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getServerSession(req, res, authOptions);
+export async function getCurrentUser(_req: NextRequest) {
+  // Get the session using the headers from the request
+  const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
     return null;
@@ -30,16 +32,30 @@ function hasRequiredRole(userRole: UserRole, requiredRole: UserRole): boolean {
   return roleHierarchy[userRole] >= roleHierarchy[requiredRole];
 }
 
-export async function validateUserAccess(req: NextApiRequest, res: NextApiResponse, requiredRole: UserRole) {
-  const currentUser = await getCurrentUser(req, res);
+export async function validateUserAccess(req: NextRequest, requiredRole: UserRole = UserRole.USER): Promise<User> {
+  const currentUser = await getCurrentUser(req);
 
   if (!currentUser) {
-    throw new Error('Unauthorized');
+    throw new AuthError(AuthErrorType.UNAUTHORIZED, 401);
   }
 
   if (!hasRequiredRole(currentUser.role, requiredRole)) {
-    throw new Error('Insufficient permissions');
+    throw new AuthError(AuthErrorType.UNAUTHORIZED, 401);
   }
 
   return currentUser;
+}
+
+// Helper function to check if user is authenticated
+export async function isAuthenticated() {
+  const session = await getServerSession(authOptions);
+
+  return !!session;
+}
+
+// Helper function to get current session user
+export async function getSessionUser() {
+  const session = await getServerSession(authOptions);
+
+  return session?.user;
 }
