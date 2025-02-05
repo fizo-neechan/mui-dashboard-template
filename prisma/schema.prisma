@@ -42,9 +42,15 @@ model Session {
   user         User     @relation(fields: [userId], references: [id])
 }
 
+enum UserRole {
+  ADMIN
+  MODERATOR
+  USER
+}
+
 model User {
   id            String    @id @default(cuid())
-  role          String    @default("USER")
+  role          UserRole    @default(USER)
   name          String
   password      String
   email         String    @unique
@@ -54,6 +60,11 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+
+  isBlocked     Boolean   @default(false)
+  isDeleted     Boolean   @default(false)
+  blockedAt     DateTime?
+  deletedAt     DateTime?
 }
 
 model VerificationRequest {
