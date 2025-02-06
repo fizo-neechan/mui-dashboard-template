@@ -15,7 +15,7 @@ export const UserButton = styled(Button)(({ theme }) => ({
   paddingBottom: '14px',
   fontSize: '12px',
   backgroundColor: theme.palette.secondary.main,
-  color: theme.palette.text.light,
+  color: 'white',
 }));
 
 export const IconButtons = styled(IconButton)(() => ({

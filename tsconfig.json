@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/features/admin/users/Users.tsx", "src/features/admin/users/Users.style.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/features/admin/users/Users.tsx", "src/features/admin/users/Users.style.tsx", "src/features/admin/users/users2.jsx"],
   "exclude": ["node_modules"]
 }
