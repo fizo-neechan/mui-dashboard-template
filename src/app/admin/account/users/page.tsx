@@ -4,15 +4,15 @@ import React from 'react';
 
 import Users from '@/features/admin/users/Users';
 
-const queryClient = new QueryClient();
+// import Users2 from  '../../../../features/admin/users/users2'; 
 
-// import User2 from '../../../../features/admin/users/User2'
+const queryClient = new QueryClient();
 
 const page = () => {
   return <div>
     <QueryClientProvider client={queryClient}>
       <Users />  
-      {/* <User2 /> */}
+      {/* <Users2 /> */}
     </QueryClientProvider>
   </div>;
 };

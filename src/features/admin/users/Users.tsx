@@ -1,21 +1,25 @@
 'use client';
-import Box from '@mui/material/Box';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { Box} from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
-import { UserButton } from './Users.style';
+import { IconButtons, SpanWrap, UserButton, WrapButton } from './Users.style';
 
 type User = {
-  id: number,
+  id: number;
   name: string;
-username: string;
-email: string;
-phone: string;
+  username: string;
+  email: string;
+  phone: string;
 };
 
 // Fetch users from API
-const fetchUsers = async () : Promise<User[]> => {
+const fetchUsers = async (): Promise<User[]> => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
 
   if (!response.ok) {
@@ -36,17 +40,31 @@ const ActionCell = () => (
       height: '100%',
     }}
   >
-    <UserButton>Edit</UserButton>
-    <UserButton>Delete</UserButton>
-    <UserButton>Copy</UserButton>
+    <IconButtons>
+      <EditIcon />
+      <SpanWrap className='edit-text' sx={{}}>
+        Edit
+      </SpanWrap>
+    </IconButtons>
+    <IconButtons>
+      <SpanWrap className='edit-text' sx={{}}>
+        Delete
+      </SpanWrap>
+      <DeleteIcon />
+    </IconButtons>
+    <IconButtons>
+      <SpanWrap className='edit-text' sx={{}}>
+        Copy
+      </SpanWrap>
+      <ContentCopyIcon />
+    </IconButtons>
   </Box>
 );
 
 const Users = () => {
-
   // Fetch users using react-query
   const {
-    data: users=[],
+    data: users = [],
     error,
     isLoading,
   } = useQuery<User[]>({
@@ -68,25 +86,27 @@ const Users = () => {
 
   // Define columns
   const columns: GridColDef<User>[] = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    { field: 'name', headerName: 'Name', width: 150   },
-    { field: 'username', headerName: 'Username',width: 150  },
-    { field: 'email', headerName: 'Email', width: 150 },
-    { field: 'phone', headerName: 'Phone',  width: 150},
+    { field: 'id', headerName: 'ID', flex: 0.5, editable: false },
+    { field: 'name', headerName: 'Name', flex: 1, editable: true },
+    { field: 'username', headerName: 'Username', flex: 1, editable: true },
+    { field: 'email', headerName: 'Email', flex: 1, editable: true },
+    { field: 'phone', headerName: 'Phone', flex: 1, editable: true },
     {
       field: 'action',
       headerName: 'Action',
-      width: 230,
+      flex: 1,
       sortable: false,
       renderCell: () => <ActionCell />,
     },
   ];
-
+  
   return (
-    <Box sx={{ height: 450, width: '100%' }}>
-      <Box sx={{ py: '20px', textAlign: 'end' }}>
-        <UserButton>Add new User</UserButton>
-      </Box>
+    <Box>
+      <WrapButton>
+        <UserButton>
+          Add new User <PersonAddIcon />
+        </UserButton>
+      </WrapButton>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -99,9 +119,9 @@ const Users = () => {
         }}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
-        getRowSpacing={(params)=>({
-          top: params.isFirstVisible ? 0:5,
-          bottom: params.isLastVisible ? 0 : 5 ,
+        getRowSpacing={(params) => ({
+          top: params.isFirstVisible ? 0 : 5,
+          bottom: params.isLastVisible ? 0 : 5,
         })}
         sx={{
           '& .MuiDataGrid-cell': {
@@ -109,6 +129,7 @@ const Users = () => {
           },
         }}
       />
+
     </Box>
   );
 };
