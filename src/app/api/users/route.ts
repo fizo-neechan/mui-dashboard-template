@@ -59,6 +59,8 @@ export async function GET(req: NextRequest) {
         hasPrevious: params.page > 1,
       });
     } catch (error) {
+      console.error(error);
+      
       if (error instanceof Error) {
         if (error.message === 'Unauthorized') {
           return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
