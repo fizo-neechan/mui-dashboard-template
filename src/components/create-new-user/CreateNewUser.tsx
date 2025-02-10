@@ -1,11 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Modal, Button, TextField, Select, MenuItem } from '@mui/material';
+import { Box, Modal, Button, TextField} from '@mui/material';
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 
+import { useSnackbar } from '@/contexts/SnackbarContext';
 import { useCreateUser } from '@/hooks/users/useUsers';
 import { createUserSchema } from '@/lib/validations/user';
+
+import RoleSelect from './RoleSelect';
 
 type CreateUserFormData = z.infer<typeof createUserSchema>;
 
@@ -14,8 +17,16 @@ interface CreateNewUserProps {
   onClose: () => void;
 }
 
+const defaultValues: CreateUserFormData = {
+  name: '',
+  email: '',
+  password: '',
+  role: 'USER',
+};
+
 const CreateNewUser: React.FC<CreateNewUserProps> = ({ open, onClose }) => {
   const createUserMutation = useCreateUser();
+  const {showSnackbar} = useSnackbar();
 
   const {
     control,
@@ -24,21 +35,22 @@ const CreateNewUser: React.FC<CreateNewUserProps> = ({ open, onClose }) => {
     reset,
   } = useForm<CreateUserFormData>({
     resolver: zodResolver(createUserSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      role: 'USER',
-    },
+    defaultValues,
   });
 
   const onSubmit = async (data: CreateUserFormData) => {
     try {
       await createUserMutation.mutateAsync(data);
       onClose();
+      showSnackbar('New user Created successful');
       reset();
-    } catch (error) {
-      console.error('Error creating user:', error);
+    } catch (error: unknown ) {
+      if (error instanceof Error) {
+        showSnackbar(error.message);
+        onClose();
+
+        return;
+      }
     }
   };
 
@@ -101,22 +113,7 @@ const CreateNewUser: React.FC<CreateNewUserProps> = ({ open, onClose }) => {
               />
             )}
           />
-          <Controller
-            name='role'
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                fullWidth
-                margin='dense'
-                error={!!errors.role}
-              >
-                <MenuItem value='USER'>User</MenuItem>
-                <MenuItem value='MODERATOR'>Moderator</MenuItem>
-                <MenuItem value='ADMIN'>Admin</MenuItem>
-              </Select>
-            )}
-          />
+          <RoleSelect control={control} errors={errors} />
           <Button
             type='submit'
             variant='contained'

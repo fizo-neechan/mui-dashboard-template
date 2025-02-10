@@ -7,11 +7,11 @@ import Users from '@/features/admin/users/Users';
 const queryClient = new QueryClient();
 
 const page = () => {
-  return <div>
+  return (
     <QueryClientProvider client={queryClient}>
-      <Users />  
+      <Users />
     </QueryClientProvider>
-  </div>;
+  );
 };
 
 export default page;

@@ -1,33 +1,34 @@
-import { Box, Button, IconButton, styled, Typography } from '@mui/material';
+import { Box, Button, IconButton, styled } from '@mui/material';
 
 export const WrapButton = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'end',
-  paddingTop: '14px',
-  paddingBottom: '14px',
+  paddingTop: '1.4rem',
+  paddingBottom: '1.4rem',
 }));
 
 export const UserButton = styled(Button)(({ theme }) => ({
-  width: '180px',
+  width: '18rem',
   display: 'flex',
-  gap: '14px',
-  paddingTop: '14px',
-  paddingBottom: '14px',
-  fontSize: '12px',
+  gap: '1.4rem',
+  paddingTop: '1.4rem',
+  paddingBottom: '1.4rem',
+  fontSize: '1.2rem',
   backgroundColor: theme.palette.secondary.main,
   color: 'white',
 }));
 
 export const IconButtons = styled(IconButton)(() => ({
   position: 'relative',
-  '&:hover .edit-text': { opacity: 1 },
+  '&:hover span': { opacity: 1 },
 }));
 
-export const SpanWrap = styled(Typography)(() => ({
+export const SpanWrap = styled('span')(() => ({
   position: 'absolute',
-  top: '-10px',
+  top: '-1rem',
   left: '50%',
   transform: 'translateX(-50%)',
   opacity: 0,
   transition: 'opacity 0.3s ease-in-out',
+  fontSize: '1rem',
 }));
