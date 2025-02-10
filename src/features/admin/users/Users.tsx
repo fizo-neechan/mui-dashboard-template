@@ -12,11 +12,11 @@ import { UserDataGridColumns } from '../../../components/users/UserDataGridColum
 const Users = () => {
   const { data, isLoading, error } = useUsers({
     page: 1,
-    limit: 10,
+    limit: 1000,
     sortBy: 'name',
     sortOrder: 'asc',
-    showDeleted: false,
-    showBlocked: false,
+    showDeleted: true,
+    showBlocked: true,
   });
 
   const [open, setOpen] = useState(false);
@@ -56,7 +56,7 @@ const Users = () => {
             },
           },
         }}
-        pageSizeOptions={[5, 10, 20]}
+        pageSizeOptions={[5, 10, 20,50,100]}
         disableRowSelectionOnClick
         getRowSpacing={(params) => ({
           top: params.isFirstVisible ? 0 : 5,
