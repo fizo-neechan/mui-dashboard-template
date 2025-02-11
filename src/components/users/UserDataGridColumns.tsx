@@ -36,20 +36,8 @@ export const UserDataGridColumns: GridColDef[] = [
     type: 'boolean',
     editable: false,
   },
-  {
-    field: 'createdAt',
-    headerName: 'Created At',
-    flex: 1,
-    editable: false,
-    valueGetter: (params: { value: string }) => new Date(params.value).toLocaleString(),
-  },
-  {
-    field: 'updatedAt',
-    headerName: 'Updated At',
-    flex: 1,
-    editable: false,
-    valueGetter: (params: { value: string }) => new Date(params.value).toLocaleString(),
-  },
+  { field: 'createdAt', headerName: 'Created At', flex: 1, editable: false },
+  { field: 'updatedAt', headerName: 'Updated At', flex: 1, editable: false },
   {
     field: 'action',
     headerName: 'Action',

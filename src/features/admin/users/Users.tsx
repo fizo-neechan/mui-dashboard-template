@@ -9,6 +9,16 @@ import { useUsers } from '@/hooks/users/useUsers';
 import { UserButton, WrapButton } from './Users.style';
 import { UserDataGridColumns } from '../../../components/users/UserDataGridColumns';
 
+const formatDate = (dateString: Date) => {
+  if (!dateString) return '';
+
+  return new Date(dateString).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
 const Users = () => {
   const { data, isLoading, error } = useUsers({
     page: 1,
@@ -21,8 +31,8 @@ const Users = () => {
 
   const [open, setOpen] = useState(false);
 
-  if (isLoading) return <Skeleton variant="rounded" width="100%" height={400} />;
-  if (error) return <Alert severity="error">Error fetching users</Alert>;
+  if (isLoading) return <Skeleton variant='rounded' width='100%' height={400} />;
+  if (error) return <Alert severity='error'>Error fetching users</Alert>;
 
   const users = data?.data ?? [];
 
@@ -34,8 +44,8 @@ const Users = () => {
     emailVerified: user.emailVerified,
     isBlocked: user.isBlocked,
     isDeleted: user.isDeleted,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
+    createdAt: formatDate(user.createdAt),
+    updatedAt: formatDate(user.createdAt),
   }));
 
   return (
