@@ -25,8 +25,8 @@ export const userQuerySchema = z.object({
   role: z.enum(['ADMIN', 'MODERATOR', 'USER']).optional(),
   sortBy: z.enum(['role', 'name', 'email', 'createdAt']).default('createdAt'),
   sortOrder: z.enum(['asc', 'desc']).default('asc'),
-  showDeleted: z.boolean().default(false),
-  showBlocked: z.boolean().default(false),
+  showDeleted: z.preprocess(val => val === 'true' || val === true, z.boolean().default(false)),
+  showBlocked: z.preprocess(val => val === 'true' || val === true, z.boolean().default(false)),
 }).transform(data => ({
   ...data,
   page: data.page ?? 1,
