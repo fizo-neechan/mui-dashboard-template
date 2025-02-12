@@ -4,20 +4,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import React, { useState } from 'react';
 
 import CreateNewUser from '@/components/create-new-user/CreateNewUser';
+import { User } from '@/components/users/UserDataGridRow';
+import { UserDataGridRow } from '@/components/users/UserDataGridRow';
 import { useUsers } from '@/hooks/users/useUsers';
 
 import { UserButton, WrapButton } from './Users.style';
 import { UserDataGridColumns } from '../../../components/users/UserDataGridColumns';
-
-const formatDate = (dateString: Date) => {
-  if (!dateString) return '';
-
-  return new Date(dateString).toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
-};
 
 const Users = () => {
   const { data, isLoading, error } = useUsers({
@@ -36,17 +28,7 @@ const Users = () => {
 
   const users = data?.data ?? [];
 
-  const rows = users.map((user, index) => ({
-    id: user.id || index,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    emailVerified: user.emailVerified,
-    isBlocked: user.isBlocked,
-    isDeleted: user.isDeleted,
-    createdAt: formatDate(user.createdAt),
-    updatedAt: formatDate(user.createdAt),
-  }));
+  const rows = users.map((user: User, index: number) => UserDataGridRow({ user, index }));
 
   return (
     <Box>
@@ -66,7 +48,7 @@ const Users = () => {
             },
           },
         }}
-        pageSizeOptions={[5, 10, 20,50,100]}
+        pageSizeOptions={[5, 10, 20, 50, 100]}
         disableRowSelectionOnClick
         getRowSpacing={(params) => ({
           top: params.isFirstVisible ? 0 : 5,
